@@ -2,13 +2,6 @@ import React, { useEffect, useState } from 'react'
 import {
   ChevronLeft,
   Menu,
-  SkipBack,
-  Play,
-  SkipForward,
-  Shuffle,
-  Link,
-  Heart,
-  Repeat,
   Sun,
   Moon,
 } from 'lucide-react'
@@ -20,6 +13,16 @@ import AudioPanel from './AudioPanel/AudioPanel'
 
 type Theme = 'light' | 'dark'
 const STORAGE_KEY = 'music-player-theme'
+
+interface Track {
+  id: string;
+  name: string;
+  artist: string;
+  url: string;
+  favorited: boolean;
+  coverImage: string;
+  // other properties you may need
+}
 
 const MusicPlayer: React.FC = () => {
   const [theme, setTheme] = useState<Theme>('light')
@@ -34,12 +37,28 @@ const MusicPlayer: React.FC = () => {
       const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
       setTheme(prefersDark ? 'dark' : 'light')
     }
-    // MusicLibrary sync
-    const rawLibrary = localStorage.getItem('MusicLibrary')
-    if (rawLibrary) {
-      const musicLibrary = JSON.parse(rawLibrary)
-    }
   }, [])
+
+  const [currentTrack, setCurrentTrack] = useState<Track | null>(null);
+
+  useEffect(() => {
+    const loadCurrentTrack = () => {
+      const raw = localStorage.getItem('MusicLibrary');
+      if (!raw) return;
+
+      const lib = JSON.parse(raw);
+      if (lib.currentPlayingTrack) {
+        setCurrentTrack(lib.currentPlayingTrack);
+      }
+    };
+
+    // Polling or waiting for localStorage to be ready
+    const interval = setInterval(() => {
+      loadCurrentTrack();
+    }, 1000); // Check every second
+
+    return () => clearInterval(interval); // Clean up interval on unmount
+  }, []);
 
   // Whenever theme changes, persist it
   useEffect(() => {
@@ -80,7 +99,7 @@ const MusicPlayer: React.FC = () => {
 
         <div className={styles.TileSwiper}>
           <img
-            src="/cover.jpg"
+            src={currentTrack?.coverImage}
             alt="Album cover"
             className={styles.CoverImage}
           />
@@ -89,7 +108,7 @@ const MusicPlayer: React.FC = () => {
         <div className={styles.Panel}>
             <AudioPanel />
 
-            <MusicPanel />
+            <MusicPanel currentTrack={currentTrack} setCurrentTrack={setCurrentTrack} />
         </div>
       </div>
     </div>
