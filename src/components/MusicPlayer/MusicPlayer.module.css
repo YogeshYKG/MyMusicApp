@@ -182,16 +182,6 @@
   box-shadow: 0 0 10px var(--secondary-color); /* Optional shadow for emphasis */
 }
 
-/* Dark theme adjustments */
-[data-theme='dark'] .ControlIcon.active {
-  background: var(--accent-dark); /* Darker background for active state */
-  box-shadow: 0 0 10px var(--accent-dark);
-}
-
-[data-theme='dark'] .ControlIcon.active1 {
-  background: var(--primary-color-dark);
-  box-shadow: 0 0 10px var(--secondary-color-dark);
-}
 
 .IconButton {
   width: 1.5rem;

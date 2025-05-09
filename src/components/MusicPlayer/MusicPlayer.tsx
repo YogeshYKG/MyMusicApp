@@ -11,6 +11,8 @@ import styles from './MusicPlayer.module.css'
 import MusicPanel from './MusicPanel/MusicPanel'
 import AudioPanel from './AudioPanel/AudioPanel'
 
+import MenuPanel from '../OffsetPanel/MenuPanel'
+
 type Theme = 'light' | 'dark'
 const STORAGE_KEY = 'music-player-theme'
 
@@ -26,6 +28,8 @@ interface Track {
 
 const MusicPlayer: React.FC = () => {
   const [theme, setTheme] = useState<Theme>('light')
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const toggleMenu = () => setIsMenuOpen(prev => !prev);
 
   
   useEffect(() => {
@@ -91,7 +95,7 @@ const MusicPlayer: React.FC = () => {
               {theme === 'light' ? <Moon size="1rem" /> : <Sun size="1rem" />}
             </button>
 
-            <button className={styles.IconButton} aria-label="Menu">
+            <button className={styles.IconButton} aria-label="Menu" onClick={toggleMenu}>
               <Menu size="1rem" />
             </button>
           </div>
@@ -104,6 +108,9 @@ const MusicPlayer: React.FC = () => {
             className={styles.CoverImage}
           />
         </div>
+        {isMenuOpen && (
+            <MenuPanel onClose={toggleMenu} />
+        )}
 
         <div className={styles.Panel}>
             <AudioPanel />
