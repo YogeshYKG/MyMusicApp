@@ -30,7 +30,17 @@ const Apploader = () => {
       }
 
       // 3. Save to localStorage
-      const musicData = { dashboard_library: dashboardLibrary }
+      const dashboardData = {
+         dashboard_library: dashboardLibrary,
+      }
+      localStorage.setItem('MusicDashboard', JSON.stringify(dashboardData))
+      
+      const musicData = { 
+        currentPlaying_library: [...dashboardLibrary], // clone for current session
+        currentPlayingIndex: 4,
+        isPlaying: true,
+        loopState: 0,
+      }
       localStorage.setItem('MusicLibrary', JSON.stringify(musicData))
 
       // 4. Preload all cover images
