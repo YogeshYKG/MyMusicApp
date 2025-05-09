@@ -37,8 +37,31 @@ const MusicPanel: React.FC<MusicPanelProps> = ({ currentTrack, setCurrentTrack }
   const getRepeatIcon = () => (loopState === 2 ? Repeat1 : Repeat);
 
   // Actions
-  const handleShuffle = () => { /* same as before */ };
-  const handleLink = () => { /* same as before */ };
+  const handleShuffle = () => { 
+    const raw = localStorage.getItem('MusicLibrary')
+    if (!raw) return
+
+    const lib = JSON.parse(raw)
+    const { currentPlaying_library: tracks, currentPlayingIndex: index } = lib
+    if (!Array.isArray(tracks) || typeof index !== 'number') return
+
+    const before = shuffleArray(tracks.slice(0, index))
+    const current = tracks[index]
+    const after = shuffleArray(tracks.slice(index + 1))
+
+    lib.currentPlaying_library = [...before, current, ...after]
+    localStorage.setItem('MusicLibrary', JSON.stringify(lib))
+    toggleActive('Shuffle')
+  };
+  const handleLink = () => { 
+    const raw = localStorage.getItem('MusicLibrary')
+    if (!raw) return
+
+    const lib = JSON.parse(raw)
+    const index = lib.currentPlayingIndex
+    const track = lib.currentPlaying_library?.[index]
+    if (track?.url) window.open(track.url, '_blank')
+  };
   
   const handleHeart = () => {
     const raw = localStorage.getItem('MusicLibrary');
@@ -61,7 +84,18 @@ const MusicPanel: React.FC<MusicPanelProps> = ({ currentTrack, setCurrentTrack }
     window.dispatchEvent(new CustomEvent('music-library-update'));
   };
 
-  const handleRepeat = () => { /* same as before */ };
+  const handleRepeat = () => {  
+    const raw = localStorage.getItem('MusicLibrary')
+    if (!raw) return
+
+    const lib = JSON.parse(raw)
+    const newLoop = (lib.loopState + 1) % 3
+
+    lib.loopState = newLoop
+    localStorage.setItem('MusicLibrary', JSON.stringify(lib))
+    setLoopState(newLoop)
+    toggleActive('Repeat', newLoop > 0)
+  };
 
   const getClickHandler = (key: string) => {
     switch (key) {
