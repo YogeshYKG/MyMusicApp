@@ -1,0 +1,34 @@
+.shimmerWrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0;
+  }
+  
+  .shimmerItem {
+    width: 85%;
+    max-width: 1000px;
+    height: 20px;
+    border-radius: 10px;
+    background: linear-gradient(
+      90deg,
+      #eeeeee 25%,
+      #dddddd 50%,
+      #eeeeee 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+  
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+  

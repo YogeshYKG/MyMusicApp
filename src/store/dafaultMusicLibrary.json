@@ -1,0 +1,84 @@
+[
+    {
+      "id": 1,
+      "title": "Mekanın Sahibi",
+      "artist": "Norm Ender",
+      "coverImage": "https://raw.githubusercontent.com/muhammederdem/mini-player/master/img/1.jpg",
+      "audioSrc": "https://raw.githubusercontent.com/muhammederdem/mini-player/master/mp3/1.mp3",
+      "url": "https://www.youtube.com/watch?v=z3wAjJXbYzA",
+      "favorited": false
+    },
+    {
+      "id": 2,
+      "title": "Everybody Knows",
+      "artist": "Leonard Cohen",
+      "coverImage": "https://raw.githubusercontent.com/muhammederdem/mini-player/master/img/2.jpg",
+      "audioSrc": "https://raw.githubusercontent.com/muhammederdem/mini-player/master/mp3/2.mp3",
+      "url": "https://www.youtube.com/watch?v=Lin-a2lTelg",
+      "favorited": true
+    },
+    {
+      "id": 3,
+      "title": "Extreme Ways",
+      "artist": "Moby",
+      "coverImage": "https://raw.githubusercontent.com/muhammederdem/mini-player/master/img/3.jpg",
+      "audioSrc": "https://raw.githubusercontent.com/muhammederdem/mini-player/master/mp3/3.mp3",
+      "url": "https://www.youtube.com/watch?v=ICjyAe9S54c",
+      "favorited": false
+    },
+    {
+      "id": 4,
+      "title": "Butterflies",
+      "artist": "Sia",
+      "coverImage": "https://raw.githubusercontent.com/muhammederdem/mini-player/master/img/4.jpg",
+      "audioSrc": "https://raw.githubusercontent.com/muhammederdem/mini-player/master/mp3/4.mp3",
+      "url": "https://www.youtube.com/watch?v=kYgGwWYOd9Y",
+      "favorited": false
+    },
+    {
+      "id": 5,
+      "title": "The Final Victory",
+      "artist": "Haggard",
+      "coverImage": "https://raw.githubusercontent.com/muhammederdem/mini-player/master/img/5.jpg",
+      "audioSrc": "https://raw.githubusercontent.com/muhammederdem/mini-player/master/mp3/5.mp3",
+      "url": "https://www.youtube.com/watch?v=0WlpALnQdN8",
+      "favorited": true
+    },
+    {
+      "id": 6,
+      "title": "Genius ft. Sia, Diplo, Labrinth",
+      "artist": "LSD",
+      "coverImage": "https://raw.githubusercontent.com/muhammederdem/mini-player/master/img/6.jpg",
+      "audioSrc": "https://raw.githubusercontent.com/muhammederdem/mini-player/master/mp3/6.mp3",
+      "url": "https://www.youtube.com/watch?v=HhoATZ1Imtw",
+      "favorited": false
+    },
+    {
+      "id": 7,
+      "title": "The Comeback Kid",
+      "artist": "Lindi Ortega",
+      "coverImage": "https://raw.githubusercontent.com/muhammederdem/mini-player/master/img/7.jpg",
+      "audioSrc": "https://raw.githubusercontent.com/muhammederdem/mini-player/master/mp3/7.mp3",
+      "url": "https://www.youtube.com/watch?v=me6aoX0wCV8",
+      "favorited": true
+    },
+    {
+      "id": 8,
+      "title": "Overdose",
+      "artist": "Grandson",
+      "coverImage": "https://raw.githubusercontent.com/muhammederdem/mini-player/master/img/8.jpg",
+      "audioSrc": "https://raw.githubusercontent.com/muhammederdem/mini-player/master/mp3/8.mp3",
+      "url": "https://www.youtube.com/watch?v=00-Rl3Jlx-o",
+      "favorited": false
+    },
+    {
+      "id": 9,
+      "title": "Rag'n'Bone Man",
+      "artist": "Human",
+      "coverImage": "https://raw.githubusercontent.com/muhammederdem/mini-player/master/img/9.jpg",
+      "audioSrc": "https://raw.githubusercontent.com/muhammederdem/mini-player/master/mp3/9.mp3",
+      "url": "https://www.youtube.com/watch?v=L3wKzyIN1yk",
+      "favorited": false
+    }
+  ]
+  
