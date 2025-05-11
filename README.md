@@ -1,4 +1,5 @@
-# 🎵 Simple Music Player
+
+# 🎵 My Music App
 
 A simple yet powerful music player application built using **React**, **TypeScript**, and **Vite**. This app offers core playback functionality with a polished UI and responsive layout.
 

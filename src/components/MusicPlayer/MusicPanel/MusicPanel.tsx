@@ -18,7 +18,7 @@ interface MusicPanelProps {
 }
 
 
-const MusicPanel: React.FC<MusicPanelProps> = ({ currentTrack, setCurrentTrack }) => {
+const MusicPanel: React.FC<MusicPanelProps> = ({ currentTrack }) => {
   const [activeStates, setActiveStates] = useState<{ [key: string]: boolean }>({});
   const [loopState, setLoopState] = useState(0);
 
@@ -53,6 +53,7 @@ const MusicPanel: React.FC<MusicPanelProps> = ({ currentTrack, setCurrentTrack }
     localStorage.setItem('MusicLibrary', JSON.stringify(lib))
     toggleActive('Shuffle')
   };
+
   const handleLink = () => { 
     const raw = localStorage.getItem('MusicLibrary')
     if (!raw) return
