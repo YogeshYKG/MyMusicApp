@@ -6,7 +6,7 @@ A simple yet powerful music player application built using **React**, **TypeScri
 ## 🚀 Demo
 
 <!-- Uncomment and add your deployed URL or GIF demo -->
-<!-- [Live Demo](https://your-demo-link.com) -->
+[Live Demo](https://my-music-app-lac.vercel.app/) 
 
 ## ✨ Features
 
