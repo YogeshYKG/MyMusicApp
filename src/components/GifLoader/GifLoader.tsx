@@ -8,7 +8,7 @@ const GifLoader = () => {
 
         <div className={styles.LoaderWrapper}>
           <Loader2 className={styles.Spinner} size="2.5rem" />
-          <p className={styles.LoadingText}>Loading Music App...</p>
+          <p className={styles.LoadingText} style={{color:'white'}}>Loading Music App...</p>
         </div>
 
       </div>
