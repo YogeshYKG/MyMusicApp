@@ -1,54 +1,95 @@
-# React + TypeScript + Vite
+# 🎵 Simple Music Player
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple yet powerful music player application built using **React**, **TypeScript**, and **Vite**. This app offers core playback functionality with a polished UI and responsive layout.
 
-Currently, two official plugins are available:
+## 🚀 Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<!-- Uncomment and add your deployed URL or GIF demo -->
+<!-- [Live Demo](https://your-demo-link.com) -->
 
-## Expanding the ESLint configuration
+## ✨ Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- 🎧 **Basic Playback Control** – Play, pause, and stop tracks.
+- ⏭️ **Track Navigation** – Skip forward or backward through the playlist.
+- 🔀 **Shuffle Playback** – Randomized song order.
+- 🔁 **Repeat Modes** – Repeat current track or full playlist.
+- 🔊 **Volume Control** – Adjustable audio levels.
+- 📊 **Progress Bar** – Shows and seeks playback position.
+- 🎼 **Track Info Display** – Title, artist, album display.
+- 📚 **Predefined Music Library** – Built-in list of sample songs.
+- ⚡ **Shimmer Loader** – Lightweight loading animations.
+- 🌀 **Gif Loader** – Shown initially on app load.
+- 🌟 **Spotlight Guide** – Highlights key features for user onboarding.
+- 📱 **Responsive Design** – Works smoothly on all screen sizes.
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 📁 Folder Structure
+<pre> 
+``` 
+MyMucisc/
+├── public/               
+├── src/
+│   ├── assets/           
+│   ├── components/
+│   │      ├── AdminPanel/                  # Work pending
+│   │      ├── Dashboard/                   # Work pending
+│   │      ├── GifLoader/                   # Loads on initial app start
+│   │      │      ├── GifLoader.module.css
+│   │      │      ├── GifLoader.tsx         
+│   │      │         
+│   │      ├── MusicPlayer/                 # Music Player
+│   │      │      ├── AudioPanel/
+│   │      │      ├── MusicPanel/
+│   │      │      ├── MusicPlayer.module.css
+│   │      │      ├── MusicPlayer.tsx  
+│   │      │              
+│   │      ├── OffsetPanel/                 # Offset Panel
+│   │             ├── OffsetPanel.module.css
+│   │             ├── OffsetPanel.tsx
+│   │
+│   ├── Utls/                               # Utility Files
+│   │      ├── ShuffleArray.tsx/            # Shuffle Utility
+│   │               
+│   ├── AppLoader.tsx                       # Loads files in background when App is Loading
+│   │
+│   ├── AppRouter.tsx                       # Router File
+│   │
+│   ├── Global.css                          # Global Css
+│   │
+│   ├── Main.tsx                            # Vite Entry Point
+│   │ 
+├── index.html
+├── tsconfig.json
+├── vite.config.ts
+├── package.json
+``` 
+</pre>
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 💡 Tech Stack
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+- **React**
+- **TypeScript**
+- **Vite** - For FrameWork
+- **Lucide-react** – For icons
+- **CSS Modules** – For scoped styling
+
+## 🛠 Installation
+
+- git clone https://github.com/YogeshYKG/MyMusicApp.git
+- cd MyMusicApp
+- npm install
+- npm run dev
+- npm run build
+
+
+## 🙌 Contributing
+
+Pull requests are welcome. For major changes, please open an issue first to discuss what you’d like to change.
+
+## Contact
+
+Dm me on linkedin, Whatsapp for reachout
+
+## 📄 License
+
+None
