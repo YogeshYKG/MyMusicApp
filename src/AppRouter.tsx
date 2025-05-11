@@ -7,9 +7,9 @@ import './Global.css'
 function AppRouter() {
   return (
     <Routes>
-      <Route path="/" element={<Dashboard />} />
+      <Route path="/" element={<MusicPlayer />} />
       <Route path="/admin" element={<AdminPanel />} />
-      <Route path="/music" element={<MusicPlayer />} />
+      <Route path="/music" element={<Dashboard />} />
     </Routes>
   )
 }

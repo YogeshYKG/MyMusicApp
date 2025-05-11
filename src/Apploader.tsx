@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import ShimmerLoader from './components/ShimmerLoader/ShimmerLoader'
+import GifLoader from './components/GifLoader/GifLoader'
 import AppRouter from './AppRouter'
 
 // Fallback JSON from local store
@@ -67,7 +67,7 @@ const Apploader = () => {
     fetchAndPreload()
   }, [navigate, location.pathname])
 
-  return loading ? <ShimmerLoader /> : <AppRouter />
+  return loading ? <GifLoader /> : <AppRouter />
 }
 
 export default Apploader

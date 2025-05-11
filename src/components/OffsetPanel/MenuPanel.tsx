@@ -90,8 +90,8 @@ const MenuPanel: React.FC<{ onClose: () => void }> = ({ onClose }) => {
             <div className={styles.Sno}>{index}</div>
             <img src={track.coverImage} alt={track.title} className={styles.TrackImage} />
             <div className={styles.TrackText}>
-              <p className={styles.Title}>{track.title}</p>
-              <p className={styles.Artist}>{track.artist}</p>
+              <span className={styles.Title}>{track.title}</span>
+              <span className={styles.Artist}>{`~~${track.artist}`}</span>
             </div>
           </div>
         ))}

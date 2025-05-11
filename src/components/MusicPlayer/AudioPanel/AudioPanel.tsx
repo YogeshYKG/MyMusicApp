@@ -179,12 +179,24 @@ const AudioPanel: React.FC = () => {
 
   return (
     <div className={styles.AudioPanel}>
-      <audio ref={audioRef} src={track?.audioSrc} />
+      <audio ref={audioRef} src={track?.audioSrc || '/dummy-song.mp3'} preload="auto" />
 
-      <h5 className={styles.Musicname}>{track?.title}</h5>
-      <p className={styles.ArtistName}>{track?.artist}</p>
+      {/* Track Title */}
+      {track?.title ? (
+        <h5 className={styles.Musicname}>{track.title}</h5>
+      ) : (
+        <div className="shimmer" style={{ width: '8rem', height: '1rem', borderRadius: '0.3rem', marginBottom: '0.5rem' }} />
+      )}
 
-      {track?.audioSrc && (
+      {/* Artist */}
+      {track?.artist ? (
+        <p className={styles.ArtistName}>{track.artist}</p>
+      ) : (
+        <div className="shimmer" style={{ width: '6rem', height: '0.75rem', borderRadius: '0.3rem', marginBottom: '1rem' }} />
+      )}
+
+      {/* Progress Bar */}
+      {track?.audioSrc ? (
         <div className={styles.MusicProgress}>
           <span className={styles.TimePlayed}>{formatTime(currentTime)}</span>
           <input
@@ -197,32 +209,38 @@ const AudioPanel: React.FC = () => {
           />
           <span className={styles.TotalTime}>{formatTime(duration)}</span>
         </div>
+      ) : (
+        <div className={styles.MusicProgress}>
+          <div className="shimmer" style={{ width: '2.5rem', height: '0.75rem', borderRadius: '0.3rem' }} />
+          <div className={`${styles.Slider} shimmer`} />
+          <div className="shimmer" style={{ width: '2.5rem', height: '0.75rem', borderRadius: '0.3rem' }} />
+        </div>
       )}
 
+      {/* Controls */}
       <div className={styles.PlayerControls}>
-        <button
-          className={styles.Back}
-          aria-label="Previous"
-          onClick={handlePrevTrack}
-        >
-          <SkipBack size="1rem" />
-        </button>
-        <button
-          className={styles.PlayPause}
-          aria-label="Play/Pause"
-          onClick={togglePlayPause}
-        >
-          {isPlaying ? <Pause size="1.2rem" /> : <Play size="1.2rem" />}
-        </button>
-        <button
-          className={styles.Next}
-          aria-label="Next"
-          onClick={handleNextTrack}
-        >
-          <SkipForward size="1rem" />
-        </button>
+        {track?.audioSrc ? (
+          <>
+            <button className={styles.Back} aria-label="Previous" onClick={handlePrevTrack}>
+              <SkipBack size="1rem" />
+            </button>
+            <button className={styles.PlayPause} aria-label="Play/Pause" onClick={togglePlayPause}>
+              {isPlaying ? <Pause size="1.2rem" /> : <Play size="1.2rem" />}
+            </button>
+            <button className={styles.Next} aria-label="Next" onClick={handleNextTrack}>
+              <SkipForward size="1rem" />
+            </button>
+          </>
+        ) : (
+          <>
+            <div className="shimmer" style={{ width: '2.5rem', height: '2.5rem', borderRadius: '50%' }} />
+            <div className="shimmer" style={{ width: '3.5rem', height: '3.5rem', borderRadius: '50%' }} />
+            <div className="shimmer" style={{ width: '2.5rem', height: '2.5rem', borderRadius: '50%' }} />
+          </>
+        )}
       </div>
     </div>
+
   )
 }
 

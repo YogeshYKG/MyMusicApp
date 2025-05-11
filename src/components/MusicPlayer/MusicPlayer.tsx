@@ -77,36 +77,56 @@ const MusicPlayer: React.FC = () => {
     <div className={styles.MusicPlayerContainer}>
       <audio src="/dummy-song.mp3" preload="auto" />
 
-      <div className={styles.MusicCard}>
+      <div className={`${styles.MusicCard} ${!currentTrack ? 'shimmer' : ''}`}>
         <div className={styles.NavPanel}>
-          <button className={styles.IconButton} aria-label="Back">
-            <ChevronLeft size="1rem" />
-          </button>
+          {currentTrack ? (
+              <>
+                <button className={styles.IconButton} aria-label="Back">
+                  <ChevronLeft size="1rem" />
+                </button>
 
-          <h6 className={styles.SmlHeading}>Now Playing</h6>
+                <h6 className={styles.SmlHeading}>Now Playing</h6>
 
-          <div className={styles.RightIcons}>
-            {/* THEME TOGGLE */}
-            <button
-              className={styles.IconButton}
-              aria-label="Toggle theme"
-              onClick={toggleTheme}
-            >
-              {theme === 'light' ? <Moon size="1rem" /> : <Sun size="1rem" />}
-            </button>
-
-            <button className={styles.IconButton} aria-label="Menu" onClick={toggleMenu}>
-              <Menu size="1rem" />
-            </button>
-          </div>
+                <div className={styles.RightIcons}>
+                  <button
+                    className={styles.IconButton}
+                    aria-label="Toggle theme"
+                    onClick={toggleTheme}
+                  >
+                    {theme === 'light' ? <Moon size="1rem" /> : <Sun size="1rem" />}
+                  </button>
+                  <button
+                    className={styles.IconButton}
+                    aria-label="Menu"
+                    onClick={toggleMenu}
+                  >
+                    <Menu size="1rem" />
+                  </button>
+                </div>
+              </>
+            ) : (
+              <>
+                <div className={`shimmer ${styles.IconButton}`} />
+                <div className="shimmer" style={{ width: '5rem', height: '1rem', borderRadius: '0.3rem' }} />
+                <div className={styles.RightIcons}>
+                  <div className={`shimmer ${styles.IconButton}`} />
+                  <div className={`shimmer ${styles.IconButton}`} />
+                </div>
+              </>
+            )
+          }
         </div>
 
         <div className={styles.TileSwiper}>
-          <img
-            src={currentTrack?.coverImage}
-            alt="Album cover"
-            className={styles.CoverImage}
-          />
+          {currentTrack?.coverImage ? (
+            <img
+              src={currentTrack.coverImage}
+              alt="Album cover"
+              className={styles.CoverImage}
+            />
+          ) : (
+            <div className={`shimmer ${styles.CoverImage}`}></div>
+          )}
         </div>
         {isMenuOpen && (
             <MenuPanel onClose={toggleMenu} />

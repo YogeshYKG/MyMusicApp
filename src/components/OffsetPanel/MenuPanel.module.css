@@ -141,14 +141,15 @@
 }
 
 .Title {
-  font-size: 1.1rem;
-  color: var(--text-light);
+  font-size: medium;
+  color: var(--text-muted);
   font-weight: bold;
 }
 
 .Artist {
-  font-size: 0.9rem;
+  font-size: small;
   color: var(--text-muted);
+  font-weight: lighter;
 }
 
 @media (max-width: 768px) {

@@ -157,19 +157,24 @@ const MusicPanel: React.FC<MusicPanelProps> = ({ currentTrack, setCurrentTrack }
 
   return (
     <div className={styles.MusicPanel}>
-      {icons.map(({ Icon, key }) => {
-        const CurrentIcon = key === 'Repeat' ? getRepeatIcon() : Icon;
-        return (
-          <button
-            key={key}
-            className={`${styles.ControlIcon} ${activeStates[key] ? styles.active : ''}`}
-            aria-label={key}
-            onClick={getClickHandler(key)}
-          >
-            <CurrentIcon size="1rem" />
-          </button>
-        );
-      })}
+      {currentTrack
+        ? icons.map(({ Icon, key }) => {
+            const CurrentIcon = key === 'Repeat' ? getRepeatIcon() : Icon;
+            return (
+              <button
+                key={key}
+                className={`${styles.ControlIcon} ${activeStates[key] ? styles.active : ''}`}
+                aria-label={key}
+                onClick={getClickHandler(key)}
+              >
+                <CurrentIcon size="1rem" />
+              </button>
+            );
+          })
+        : [...Array(4)].map((_, idx) => (
+            <div key={idx} className={`${styles.ControlIcon} shimmer`} />
+          ))
+      }
     </div>
   );
 };
