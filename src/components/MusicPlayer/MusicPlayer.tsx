@@ -1,20 +1,15 @@
-import React, { useEffect, useState } from 'react'
-import {
-  ChevronLeft,
-  Menu,
-  Sun,
-  Moon,
-} from 'lucide-react'
-import styles from './MusicPlayer.module.css'
+import React, { useEffect, useState } from "react";
+import { ChevronLeft, Menu, Sun, Moon } from "lucide-react";
+import styles from "./MusicPlayer.module.css";
+import Spotlight from "../Spotlight/Spotlight";
 
+import MusicPanel from "./MusicPanel/MusicPanel";
+import AudioPanel from "./AudioPanel/AudioPanel";
 
-import MusicPanel from './MusicPanel/MusicPanel'
-import AudioPanel from './AudioPanel/AudioPanel'
+import MenuPanel from "../OffsetPanel/MenuPanel";
 
-import MenuPanel from '../OffsetPanel/MenuPanel'
-
-type Theme = 'light' | 'dark'
-const STORAGE_KEY = 'music-player-theme'
+type Theme = "light" | "dark";
+const STORAGE_KEY = "music-player-theme";
 
 interface Track {
   id: string;
@@ -27,27 +22,29 @@ interface Track {
 }
 
 const MusicPlayer: React.FC = () => {
-  const [theme, setTheme] = useState<Theme>('light')
+  const [theme, setTheme] = useState<Theme>("light");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const toggleMenu = () => setIsMenuOpen(prev => !prev);
+  const toggleMenu = () => setIsMenuOpen((prev) => !prev);
+  const [showSpotlight, setShowSpotlight] = useState(true);
 
-  
   useEffect(() => {
     // Theme setup
-    const stored = localStorage.getItem(STORAGE_KEY) as Theme | null
-    if (stored === 'light' || stored === 'dark') {
-      setTheme(stored)
+    const stored = localStorage.getItem(STORAGE_KEY) as Theme | null;
+    if (stored === "light" || stored === "dark") {
+      setTheme(stored);
     } else {
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-      setTheme(prefersDark ? 'dark' : 'light')
+      const prefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)"
+      ).matches;
+      setTheme(prefersDark ? "dark" : "light");
     }
-  }, [])
+  }, []);
 
   const [currentTrack, setCurrentTrack] = useState<Track | null>(null);
 
   useEffect(() => {
     const loadCurrentTrack = () => {
-      const raw = localStorage.getItem('MusicLibrary');
+      const raw = localStorage.getItem("MusicLibrary");
       if (!raw) return;
 
       const lib = JSON.parse(raw);
@@ -66,55 +63,71 @@ const MusicPlayer: React.FC = () => {
 
   // Whenever theme changes, persist it
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme)
-    localStorage.setItem(STORAGE_KEY, theme)
-  }, [theme])
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem(STORAGE_KEY, theme);
+  }, [theme]);
 
   const toggleTheme = () =>
-    setTheme(curr => (curr === 'light' ? 'dark' : 'light'))
+    setTheme((curr) => (curr === "light" ? "dark" : "light"));
 
   return (
     <div className={styles.MusicPlayerContainer}>
       <audio src="/dummy-song.mp3" preload="auto" />
 
-      <div className={`${styles.MusicCard} ${!currentTrack ? 'shimmer' : ''}`}>
+      <div className={`${styles.MusicCard} ${!currentTrack ? "shimmer" : ""}`}>
         <div className={styles.NavPanel}>
           {currentTrack ? (
-              <>
+            <>
+              <div className="dashboard-library">
                 <button className={styles.IconButton} aria-label="Back">
-                  <ChevronLeft size="1rem" />
+                <ChevronLeft size="1rem" />
+              </button>
+              </div>
+
+              <h6 className={styles.SmlHeading}>Now Playing</h6>
+
+              <div className={styles.RightIcons}>
+                <div className={'theme-toggle'}>
+                  <button
+                  className={styles.IconButton}
+                  aria-label="Toggle theme"
+                  onClick={toggleTheme}
+                >
+                  {theme === "light" ? (
+                    <Moon size="1rem" />
+                  ) : (
+                    <Sun size="1rem" />
+                  )}
                 </button>
-
-                <h6 className={styles.SmlHeading}>Now Playing</h6>
-
-                <div className={styles.RightIcons}>
-                  <button
-                    className={styles.IconButton}
-                    aria-label="Toggle theme"
-                    onClick={toggleTheme}
-                  >
-                    {theme === 'light' ? <Moon size="1rem" /> : <Sun size="1rem" />}
-                  </button>
-                  <button
-                    className={styles.IconButton}
-                    aria-label="Menu"
-                    onClick={toggleMenu}
-                  >
-                    <Menu size="1rem" />
-                  </button>
                 </div>
-              </>
-            ) : (
-              <>
+                <div className={'hamburger-menu'}>
+                  <button
+                  className={styles.IconButton}
+                  aria-label="Menu"
+                  onClick={toggleMenu}
+                >
+                  <Menu size="1rem" />
+                </button>
+                </div>
+              </div>
+            </>
+          ) : (
+            <>
+              <div className={`shimmer ${styles.IconButton}`} />
+              <div
+                className="shimmer"
+                style={{
+                  width: "5rem",
+                  height: "1rem",
+                  borderRadius: "0.3rem",
+                }}
+              />
+              <div className={styles.RightIcons}>
                 <div className={`shimmer ${styles.IconButton}`} />
-                <div className="shimmer" style={{ width: '5rem', height: '1rem', borderRadius: '0.3rem' }} />
-                <div className={styles.RightIcons}>
-                  <div className={`shimmer ${styles.IconButton}`} />
-                  <div className={`shimmer ${styles.IconButton}`} />
-                </div>
-              </>
-            )
-          }
+                <div className={`shimmer ${styles.IconButton}`} />
+              </div>
+            </>
+          )}
         </div>
 
         <div className={styles.TileSwiper}>
@@ -128,18 +141,23 @@ const MusicPlayer: React.FC = () => {
             <div className={`shimmer ${styles.CoverImage}`}></div>
           )}
         </div>
-        {isMenuOpen && (
-            <MenuPanel onClose={toggleMenu} />
-        )}
+        {isMenuOpen && <MenuPanel onClose={toggleMenu} />}
 
         <div className={styles.Panel}>
+          <div className={"player-controls"}>
             <AudioPanel />
-
-            <MusicPanel currentTrack={currentTrack} setCurrentTrack={setCurrentTrack} />
+          </div>
+          <div className={"music-panel"}>
+            <MusicPanel
+              currentTrack={currentTrack}
+              setCurrentTrack={setCurrentTrack}
+            />
+          </div>
         </div>
       </div>
+      {showSpotlight && <Spotlight onFinish={() => setShowSpotlight(false)} />}
     </div>
-  )
-}
+  );
+};
 
-export default MusicPlayer
+export default MusicPlayer;
